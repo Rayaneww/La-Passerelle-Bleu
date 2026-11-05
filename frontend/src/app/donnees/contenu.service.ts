@@ -18,7 +18,7 @@ export class ContenuService {
       lieu: 'La Ferté-sous-Jouarre',
       description:
         "Jouez à des jeux variés à l'heure du thé ! Découvrez notre sélection de jeux et n'hésitez pas à apporter les vôtres. Un moment convivial que vous soyez seul, en famille ou entre amis.",
-      affiche: '/images/evenements/jeux-de-societhe.jpg',
+      affiche: 'images/evenements/jeux-de-societhe.jpg',
       categorie: 'rencontre',
       mentions: ['Ouvert à toutes et tous', 'Buvette sur place'],
     },

@@ -65,6 +65,11 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "github-pages": {
+              "outputMode": "static",
+              "ssr": false,
+              "baseHref": "/la-passerelle-bleue/"
             }
           },
           "defaultConfiguration": "production"
