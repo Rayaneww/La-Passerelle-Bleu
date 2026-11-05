@@ -1,0 +1,30 @@
+@let evt = evenement();
+<div class="carte">
+  <time class="date" [attr.datetime]="evt.dateDebut">
+    <span class="petit">{{ evt.dateDebut | date: 'EEE' }}</span>
+    <span class="jour">{{ evt.dateDebut | date: 'd' }}</span>
+    <span class="petit">{{ evt.dateDebut | date: 'MMM' }}</span>
+  </time>
+  <div class="corps">
+    <p class="categorie">{{ categories[evt.categorie] }}</p>
+    @if (niveau() === 2) {
+      <h2 class="titre"><a [routerLink]="['/agenda', evt.slug]">{{ evt.titre }}</a></h2>
+    } @else {
+      <h3 class="titre"><a [routerLink]="['/agenda', evt.slug]">{{ evt.titre }}</a></h3>
+    }
+    <p class="infos">
+      @if (passe()) {
+        Le {{ evt.dateDebut | date: 'd MMMM y' }}, {{ evt.lieu }}
+      } @else {
+        À partir de {{ heure(evt.dateDebut) }}, {{ evt.lieu }}
+      }
+    </p>
+    @if (evt.mentions.length && !passe()) {
+      <ul class="mentions">
+        @for (m of evt.mentions; track m) {
+          <li>{{ m }}</li>
+        }
+      </ul>
+    }
+  </div>
+</div>

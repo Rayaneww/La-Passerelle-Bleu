@@ -1,0 +1,203 @@
+.intro {
+  padding-block: clamp(1.5rem, 4vw, 3.5rem) 2rem;
+
+  h1 {
+    font-size: var(--t-xxl);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+}
+
+.chapo {
+  color: var(--texte-doux);
+}
+
+.sommaire {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  a {
+    display: block;
+    font-family: var(--police-titre);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.45em 1em;
+    border-radius: 999px;
+    background: var(--lavande-pale);
+
+    &:hover {
+      background: var(--lavande);
+    }
+  }
+}
+
+.action {
+  padding-block: 3rem;
+  scroll-margin-top: 1rem;
+
+  &--inverse {
+    background: var(--lavande-pale);
+
+    .action__visuel {
+      order: 2;
+    }
+  }
+}
+
+.action__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* Compositions de cercles, une par action, dans l'esprit des affiches */
+.action__visuel {
+  position: relative;
+  aspect-ratio: 1;
+  max-width: 20rem;
+  width: 100%;
+  justify-self: center;
+
+  span {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  span:nth-child(1) {
+    inset: 0 10% 10% 0;
+    background: var(--lavande);
+  }
+
+  span:nth-child(2) {
+    width: 45%;
+    aspect-ratio: 1;
+    right: 0;
+    bottom: 0;
+    background: var(--bleu-roi);
+  }
+
+  span:nth-child(3) {
+    width: 16%;
+    aspect-ratio: 1;
+    left: 12%;
+    top: 12%;
+    background: var(--the);
+  }
+
+  &[data-motif='1'] {
+    span:nth-child(1) {
+      inset: 10% 0 0 10%;
+      background: var(--blanc);
+    }
+
+    span:nth-child(2) {
+      width: 38%;
+      left: 0;
+      right: auto;
+      bottom: auto;
+      top: 0;
+    }
+
+    span:nth-child(3) {
+      left: auto;
+      top: auto;
+      right: 14%;
+      bottom: 14%;
+    }
+  }
+
+  &[data-motif='2'] {
+    span:nth-child(1) {
+      inset: 15% 15% 15% 15%;
+    }
+
+    span:nth-child(2) {
+      width: 30%;
+      right: auto;
+      left: 0;
+      bottom: 6%;
+    }
+
+    span:nth-child(3) {
+      width: 22%;
+      left: auto;
+      right: 4%;
+      top: 4%;
+    }
+  }
+}
+
+.exemples__titre {
+  font-size: var(--t-m);
+  color: var(--bleu-nuit);
+  margin-top: 1.5rem;
+}
+
+.exemples {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  li {
+    font-weight: 700;
+    font-size: var(--t-s);
+    color: var(--bleu-roi);
+    background: var(--blanc);
+    border: 2px solid var(--lavande);
+    padding: 0.3em 0.9em;
+    border-radius: 999px;
+  }
+}
+
+.appel {
+  margin-top: 3rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-radius: 2rem;
+  background: var(--bleu-roi);
+  color: var(--blanc);
+
+  h2 {
+    color: var(--blanc);
+  }
+
+  p {
+    color: var(--lavande-pale);
+  }
+
+  .bouton {
+    background: var(--blanc);
+    color: var(--bleu-roi);
+    border-color: var(--blanc);
+
+    &:hover {
+      background: var(--lavande-pale);
+    }
+  }
+
+  .bouton:focus-visible {
+    outline-color: var(--the);
+  }
+}
+
+@media (max-width: 48rem) {
+  .action__grille {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .action__visuel {
+    max-width: 12rem;
+    justify-self: start;
+  }
+
+  .action--inverse .action__visuel {
+    order: 0;
+  }
+}

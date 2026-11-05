@@ -1,0 +1,48 @@
+<article class="conteneur page">
+  <h1>Mentions légales</h1>
+  <p class="maj">Dernière mise à jour : novembre 2026</p>
+
+  <h2>Éditeur du site</h2>
+  <p>
+    {{ site.nom }}, association régie par la loi du 1er juillet 1901.<br />
+    Siège social : <span class="a-completer">[adresse du siège, à compléter]</span>, {{ site.ville }}.<br />
+    Numéro RNA : <span class="a-completer">[W77…, à compléter]</span><br />
+    E-mail : <a [href]="'mailto:' + site.email">{{ site.email }}</a><br />
+    Téléphone : <a [href]="tel">{{ site.telephone }}</a>
+  </p>
+  <p>
+    Directeur ou directrice de la publication :
+    <span class="a-completer">[nom, en qualité de président·e de l’association, à compléter]</span>
+  </p>
+
+  <h2>Hébergement</h2>
+  <p>
+    Le site est hébergé sur un serveur géré par l’association :
+    <span class="a-completer">[nom et adresse de la personne ou de l’association qui héberge, à compléter]</span>.<br />
+    Il est diffusé via le réseau Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis.
+  </p>
+
+  <h2>Données personnelles</h2>
+  <p>
+    Le site public ne collecte aucune donnée personnelle sur ses visiteurs : pas de formulaire, pas de compte, pas
+    d’outil de mesure d’audience ni de publicité.
+  </p>
+  <p>
+    Seuls les bénévoles de l’association disposent d’un compte pour publier les événements et les annonces. Leurs
+    données (nom, adresse e-mail) servent uniquement à cette gestion et ne sont jamais transmises à des tiers.
+    Conformément au RGPD, chacun peut demander l’accès, la rectification ou la suppression de ses données en écrivant à
+    <a [href]="'mailto:' + site.email">{{ site.email }}</a>.
+  </p>
+
+  <h2>Cookies</h2>
+  <p>
+    Le site n’utilise aucun cookie de suivi. Un cookie technique, strictement nécessaire, est déposé uniquement lors de
+    la connexion d’un bénévole à l’espace d’administration. Il n’exige pas de consentement.
+  </p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>
+    Le logo, les textes et les affiches présents sur ce site appartiennent à {{ site.nom }}, sauf mention contraire.
+    Toute reproduction sans autorisation est interdite.
+  </p>
+</article>

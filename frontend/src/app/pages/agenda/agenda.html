@@ -1,0 +1,55 @@
+<header class="conteneur intro">
+  <h1>Agenda et annonces</h1>
+  <p class="chapo">Nos prochains rendez-vous et les dernières nouvelles de l’association. Tout le monde est le bienvenu.</p>
+</header>
+
+<section class="conteneur bloc" aria-labelledby="titre-a-venir">
+  <h2 id="titre-a-venir">À venir</h2>
+  @if (aVenir().length) {
+    <ol class="liste">
+      @for (evt of aVenir(); track evt.id) {
+        <li><app-carte-rdv [evenement]="evt" /></li>
+      }
+    </ol>
+  } @else {
+    <p class="vide">Aucun rendez-vous n’est programmé pour le moment. Les prochains seront annoncés ici très bientôt.</p>
+  }
+</section>
+
+<section class="annonces-bloc" id="annonces" aria-labelledby="titre-annonces">
+  <div class="conteneur bloc">
+    <h2 id="titre-annonces">Annonces</h2>
+    @if (annonces().length) {
+      <div class="annonces">
+        @for (a of annonces(); track a.id) {
+          <article class="annonce" [id]="'annonce-' + a.slug">
+            <time [attr.datetime]="a.publieLe">{{ a.publieLe | date: 'd MMMM y' }}</time>
+            <h3>{{ a.titre }}</h3>
+            @if (a.image) {
+              <img [src]="a.image" alt="" loading="lazy" />
+            }
+            <p>{{ a.contenu }}</p>
+          </article>
+        }
+      </div>
+    } @else {
+      <p class="vide">Pas d’annonce pour l’instant.</p>
+    }
+  </div>
+</section>
+
+@if (passes().length) {
+  <section class="conteneur bloc" aria-labelledby="titre-passes">
+    <details class="passes">
+      <summary>
+        <h2 id="titre-passes">Événements passés</h2>
+        <span class="compteur">{{ passes().length }}</span>
+      </summary>
+      <ol class="liste">
+        @for (evt of passes(); track evt.id) {
+          <li><app-carte-rdv [evenement]="evt" [passe]="true" /></li>
+        }
+      </ol>
+    </details>
+  </section>
+}

@@ -1,0 +1,56 @@
+<div class="conteneur page">
+  <a class="retour" routerLink="/agenda">Retour à l’agenda</a>
+
+  @if (evenement(); as evt) {
+    <article class="grille">
+      <div class="texte">
+        <p class="categorie">{{ categories[evt.categorie] }}</p>
+        <h1>{{ evt.titre }}</h1>
+
+        @if (estPasse(evt.dateFin ?? evt.dateDebut)) {
+          <p class="bandeau-passe">Cet événement a eu lieu.</p>
+        }
+
+        <dl class="infos">
+          <div>
+            <dt>Quand</dt>
+            <dd>
+              <time [attr.datetime]="evt.dateDebut">
+                {{ evt.dateDebut | date: 'EEEE d MMMM y' }}, à partir de {{ heure(evt.dateDebut) }}
+              </time>
+              @if (evt.dateFin) {
+                , jusqu’à {{ heure(evt.dateFin) }}
+              }
+            </dd>
+          </div>
+          <div>
+            <dt>Où</dt>
+            <dd>{{ evt.lieu }}</dd>
+          </div>
+        </dl>
+
+        @if (evt.mentions.length) {
+          <ul class="mentions">
+            @for (m of evt.mentions; track m) {
+              <li>{{ m }}</li>
+            }
+          </ul>
+        }
+
+        <p class="description">{{ evt.description }}</p>
+      </div>
+
+      @if (evt.affiche) {
+        <figure class="affiche">
+          <img [src]="evt.affiche" [alt]="'Affiche de l’événement ' + evt.titre" width="1200" height="675" />
+        </figure>
+      }
+    </article>
+  } @else {
+    <section class="introuvable">
+      <h1>Cet événement est introuvable</h1>
+      <p>Il a peut-être été déplacé ou supprimé. Consultez l’agenda pour voir les prochains rendez-vous.</p>
+      <a class="bouton" routerLink="/agenda">Voir l’agenda</a>
+    </section>
+  }
+</div>

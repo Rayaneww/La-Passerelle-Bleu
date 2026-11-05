@@ -1,0 +1,96 @@
+<!-- Bandeau principal -->
+<section class="bandeau">
+  <div class="conteneur bandeau__grille">
+    <div class="bandeau__texte">
+      <h1>Ensemble,<br />créons du lien</h1>
+      <p class="chapo">
+        À La Ferté-sous-Jouarre, La Passerelle Bleue réunit voisins, familles et curieux autour d’ateliers, de
+        rencontres conviviales et de sorties. Pour que chacun trouve sa place.
+      </p>
+      <div class="actions">
+        <a class="bouton" routerLink="/agenda">Voir l’agenda</a>
+        <a class="bouton bouton--clair" routerLink="/nos-actions">Découvrir nos actions</a>
+      </div>
+    </div>
+
+    <div class="bandeau__visuel" aria-hidden="true">
+      <span class="rond rond--grand"></span>
+      <span class="rond rond--moyen"></span>
+      <span class="rond rond--petit"></span>
+      @if (vedette()?.affiche; as affiche) {
+        <img class="affiche" [src]="affiche" alt="" width="520" height="293" />
+      }
+    </div>
+  </div>
+
+  <!-- La « passerelle » : une courbe qui relie le bandeau au reste de la page -->
+  <svg class="passerelle" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M0 100 C 300 10, 900 10, 1200 100" />
+  </svg>
+</section>
+
+<!-- Prochains rendez-vous -->
+<section class="conteneur section" aria-labelledby="titre-rdv">
+  <div class="section__entete">
+    <h2 id="titre-rdv">Prochains rendez-vous</h2>
+    <a routerLink="/agenda">Tout l’agenda</a>
+  </div>
+
+  @if (evenements().length) {
+    <ol class="rdv">
+      @for (evt of evenements(); track evt.id) {
+        <li><app-carte-rdv [evenement]="evt" /></li>
+      }
+    </ol>
+  } @else {
+    <p>Les prochains rendez-vous seront annoncés très bientôt. Revenez nous voir !</p>
+  }
+</section>
+
+<!-- Valeurs -->
+<section class="valeurs" aria-labelledby="titre-valeurs">
+  <div class="conteneur">
+    <h2 id="titre-valeurs">Ce qui nous rassemble</h2>
+    <ul class="valeurs__liste">
+      @for (v of valeurs; track v.titre) {
+        <li>
+          <h3>{{ v.titre }}</h3>
+          <p>{{ v.texte }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Annonces -->
+@if (annonces().length) {
+  <section class="conteneur section" aria-labelledby="titre-annonces">
+    <div class="section__entete">
+      <h2 id="titre-annonces">Les dernières nouvelles</h2>
+      <a routerLink="/agenda" fragment="annonces">Toutes les annonces</a>
+    </div>
+    <div class="annonces">
+      @for (a of annonces(); track a.id) {
+        <article class="annonce">
+          <time [attr.datetime]="a.publieLe">{{ a.publieLe | date: 'd MMMM y' }}</time>
+          <h3>{{ a.titre }}</h3>
+          <p>{{ a.contenu }}</p>
+        </article>
+      }
+    </div>
+  </section>
+}
+
+<!-- Forum des associations -->
+<section class="conteneur">
+  <div class="forum">
+    <div>
+      <h2>On s’est croisés au Forum ?</h2>
+      <p>
+        La Passerelle Bleue était présente au Forum des associations de La Ferté-sous-Jouarre. Merci à toutes celles et
+        ceux qui sont venus nous rencontrer. Envie de continuer la discussion ? Venez à l’un de nos rendez-vous.
+      </p>
+    </div>
+    <a class="bouton" routerLink="/agenda">Voir les rendez-vous</a>
+  </div>
+</section>

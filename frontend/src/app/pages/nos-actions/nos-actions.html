@@ -1,0 +1,42 @@
+<header class="conteneur intro">
+  <h1>Nos actions</h1>
+  <p class="chapo">
+    Tout au long de l’année, La Passerelle Bleue propose trois façons de se retrouver. Toutes ont le même but : que
+    chacun, d’où qu’il vienne, trouve sa place et ait envie de revenir.
+  </p>
+  <nav aria-label="Sur cette page">
+    <ul class="sommaire">
+      @for (a of actions; track a.id) {
+        <li><a routerLink="/nos-actions" [fragment]="a.id">{{ a.titre }}</a></li>
+      }
+    </ul>
+  </nav>
+</header>
+
+@for (a of actions; track a.id; let i = $index) {
+  <section class="action" [id]="a.id" [attr.aria-labelledby]="'titre-' + a.id" [class.action--inverse]="i % 2 === 1">
+    <div class="conteneur action__grille">
+      <div class="action__visuel" [attr.data-motif]="i" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div>
+        <h2 [id]="'titre-' + a.id">{{ a.titre }}</h2>
+        <p>{{ a.texte }}</p>
+        <h3 class="exemples__titre">Par exemple</h3>
+        <ul class="exemples">
+          @for (ex of a.exemples; track ex) {
+            <li>{{ ex }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+}
+
+<section class="conteneur">
+  <div class="appel">
+    <h2>Envie d’essayer ?</h2>
+    <p>Pas besoin d’être adhérent pour découvrir : venez à un prochain rendez-vous, on vous y attend.</p>
+    <a class="bouton" routerLink="/agenda">Voir l’agenda</a>
+  </div>
+</section>

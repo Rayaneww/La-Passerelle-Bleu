@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  outline: none;
+}
+
+.lien-evitement {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 10;
+  background: var(--bleu-roi);
+  color: var(--blanc);
+  padding: 0.6rem 1rem;
+  border-radius: var(--rayon-s);
+
+  &:focus {
+    top: 1rem;
+  }
+}

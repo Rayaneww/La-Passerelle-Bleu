@@ -1,0 +1,35 @@
+<header class="en-tete">
+  <div class="conteneur barre">
+    <a routerLink="/" class="logo" (click)="fermerMenu()">
+      <img src="/images/logo.jpg" alt="La Passerelle Bleue, accueil" width="150" height="150" />
+    </a>
+
+    <button
+      type="button"
+      class="bouton-menu"
+      [attr.aria-expanded]="menuOuvert()"
+      aria-controls="navigation-principale"
+      (click)="basculerMenu()"
+    >
+      <span class="bouton-menu__barres" aria-hidden="true"></span>
+      Menu
+    </button>
+
+    <nav id="navigation-principale" class="nav" [class.nav--ouverte]="menuOuvert()" aria-label="Navigation principale">
+      <ul>
+        @for (lien of liens; track lien.chemin) {
+          <li>
+            <a
+              [routerLink]="lien.chemin"
+              routerLinkActive="actif"
+              [routerLinkActiveOptions]="{ exact: lien.exact }"
+              ariaCurrentWhenActive="page"
+              (click)="fermerMenu()"
+              >{{ lien.libelle }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
